@@ -1,0 +1,31 @@
+name: questvr
+description: Immersive WebXR VR player for Meta Quest (Enter VR button on scene pages)
+version: 1.2.2
+ui:
+  javascript:
+    - questvr.js
+  css:
+    - questvr.css
+  assets:
+    /: assets
+settings:
+  defaultProjection:
+    displayName: Default projection
+    description: "Used when no tag decides it. One of 180_SBS, 180_TB, 180_MONO, 360_SBS, 360_TB, 360_MONO (default 180_SBS)."
+    type: STRING
+  defaultZoomPercent:
+    displayName: Default zoom (%)
+    description: "Whole number in percent: 100 = 1.00x (default), 115 = 1.15x. Above 100 makes the image smaller / farther away. Range 60-160."
+    type: NUMBER
+  defaultDistance:
+    displayName: Default distance (m)
+    description: "Radius of the virtual dome in metres; small values feel too close (default 50)."
+    type: NUMBER
+  renderScalePercent:
+    displayName: VR render quality (%)
+    description: "Headset render resolution in percent of the default: 100 = default, 120-150 = sharper video but more GPU load (watch for stutter). Range 50-150; 150 is the Quest 3 browser maximum (measured). A choice made in the VR menu (Advanced) overrides this on that device."
+    type: NUMBER
+  hideForceButton:
+    displayName: Hide VR button on non-VR scenes
+    description: "If on, only scenes with the VR tag get the VR button."
+    type: BOOLEAN

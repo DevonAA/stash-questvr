@@ -1,0 +1,48 @@
+# Builds the Stash plugin package (questvr.zip + index.yml) on every push.
+# Private repository: the package is kept as a downloadable workflow artifact.
+# Public repository:  it is additionally published on GitHub Pages as a Stash plugin source:
+#                     https://<user>.github.io/<repo>/stable/index.yml
+name: Build plugin package
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build package
+        run: sh scripts/build-package.sh _site/stable
+      - name: Keep package as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: questvr-package
+          path: _site/stable
+      - name: Prepare GitHub Pages upload
+        if: ${{ !github.event.repository.private }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    if: ${{ !github.event.repository.private }}
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

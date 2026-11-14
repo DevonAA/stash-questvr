@@ -1,0 +1,17 @@
+.questvr-enter {
+  position: absolute; top: 14px; left: 50%; transform: translateX(-50%); z-index: 5;
+  padding: 12px 28px; border: 0; border-radius: 999px;
+  background: #2f6fde; color: #fff; font: 600 20px/1 system-ui, sans-serif;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .45); cursor: pointer;
+}
+.questvr-enter:hover { background: #3f7cf0; }
+.video-js .questvr-bar-btn { font-weight: 700; font-size: 1.1em; cursor: pointer; width: 3em; }
+
+#questvr-notice {
+  position: fixed; right: 12px; bottom: 12px; z-index: 2000; max-width: 360px;
+  background: rgba(20, 20, 24, .92); color: #eee; border: 1px solid #444; border-radius: 8px;
+  padding: 10px 12px; font: 13px/1.4 system-ui, sans-serif; box-shadow: 0 4px 16px rgba(0, 0, 0, .4);
+}
+#questvr-notice b { color: #fff; }
+#questvr-notice button { float: right; margin-left: 8px; background: none; border: 0; color: #aaa; font-size: 16px; cursor: pointer; }
+.video-js .questvr-bar-btn.questvr-on { color: #5b9bff; }
